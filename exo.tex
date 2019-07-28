@@ -1,0 +1,151 @@
+% (ax+b)(cx+d)
+\newcommand\ExoDoubleDistrib{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    $(\Ra x \Plus{\Rb})(\Rc x \Plus{\Rd})$%
+}
+\newcommand\SolDoubleDistrib{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10} %
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Rc),0)}%
+    \FPeval\Vb{trunc((\Ra)*(\Rd) + (\Rb)*(\Rc),0)}%
+    \FPeval\Vc{trunc((\Rb)*(\Rd),0)}%
+    $\Va x^2 \Plus{\Vb} x \Plus{\Vc}$%
+}
+
+% Variante du précédent : (ax+b)(c+dx)
+\newcommand\ExoDoubleDistribA{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    $(\Ra x \Plus{\Rb})(\Rc \Plus{\Rd}x)$%
+}
+\newcommand\SolDoubleDistribA{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10} %
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Rd),0)}%
+    \FPeval\Vb{trunc((\Ra)*(\Rc) + (\Rb)*(\Rd),0)}%
+    \FPeval\Vc{trunc((\Rb)*(\Rc),0)}%
+    $\Va x^2 \Plus{\Vb} x \Plus{\Vc}$%
+}
+
+% Variante : (ax²+b)(cx+d)
+\newcommand\ExoDoubleDistribB{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    $(\Ra x^2 \Plus{\Rb})(\Rc x \Plus{\Rd})$%
+}
+\newcommand\SolDoubleDistribB{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10} %
+    \SR{c}{1}{10}%
+    \SR{d}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Rc),0)}%
+    \FPeval\Vb{trunc((\Ra)*(\Rd) + (\Rb)*(\Rc),0)}%
+    \FPeval\Vc{trunc((\Rb)*(\Rd),0)}%
+    $\Va x^3 \Plus{\Vb} x^2 \Plus{\Vc}$%
+}
+
+% (ax ± b)^2
+\newcommand\ExoIRa{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    $(\Ra x \Plus{\Rb})^2$%
+}
+\newcommand\SolIRa{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Ra),0)}%
+    \FPeval\Vb{trunc(2*(\Ra)*(\Rb),0)}%
+    \FPeval\Vc{trunc((\Rb)*(\Rb),0)}%
+    $\Va x^2 \Plus{\Vb} x \Plus{\Vc}$%
+}
+
+% Variante : (a ± bx)^2
+\newcommand\ExoIRaA{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    $(\Ra \Plus{\Rb}x)^2$%
+}
+\newcommand\SolIRaA{%
+    \SR{a}{1}{10}%
+    \SR{b}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Ra),0)}%
+    \FPeval\Vb{trunc(2*(\Ra)*(\Rb),0)}%
+    \FPeval\Vc{trunc((\Rb)*(\Rb),0)}%
+    $\Vc x^2 \Plus{\Vb} x \Plus{\Va}$%
+}
+
+% (ax + b)(ax - b)
+\newcommand\ExoIRb{%
+    \SR{a}{1}{10}%
+    \R{b}{1}{10}%
+    $(\Ra x + \Rb)(\Ra x - \Rb)$%
+}
+\newcommand\SolIRb{%
+    \SR{a}{1}{10}%
+    \R{b}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Ra),0)}%
+    \FPeval\Vb{trunc((\Rb)*(\Rb),0)}%
+    $\Va x^2 - \Vb$%
+}
+
+% (a + bx)(a - bx)
+\newcommand\ExoIRbB{%
+    \SR{a}{1}{10}%
+    \R{b}{1}{10}%
+    $(\Ra + \Rbx)(\Ra - \Rb x)$%
+}
+\newcommand\SolIRbB{%
+    \SR{a}{1}{10}%
+    \R{b}{1}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Ra),0)}%
+    \FPeval\Vb{trunc((\Rb)*(\Rb),0)}%
+    $\Vb x^2 - \Va$%
+}
+
+% Equation ax + b = c
+\newcommand\ExoEquationA{%
+    % ax + c = ab + c
+    %           Va
+    \SR{a}{2}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{11}{100}%
+    \FPeval\Va{trunc((\Ra)*(\Rb)+(\Rc),0)}%
+    $\Ra x \Plus{\Rc} = \Va$%
+}
+\newcommand\SolEquationA{%
+    \SR{a}{2}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{11}{100}%
+    $x = \Rb$%
+}
+
+% Variante ax + b = cx + d
+\newcommand\ExoEquationB{%
+    % (a + d)x + c = dx + (ab + c)
+    %   Vb                   Va
+    \SR{a}{2}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{11}{100}%
+    \SR{d}{2}{10}%
+    \FPeval\Va{trunc((\Ra)*(\Rb)+(\Rc),0)}%
+    \FPeval\Vb{trunc((\Ra)+(\Rd),0)}%
+    $\EZ{\Vb}{}{\Vb x} \Plus{\Rc} = \Rd x \Plus{\Va}$%
+}
+\newcommand\SolEquationB{%
+    \SR{a}{2}{10}%
+    \SR{b}{1}{10}%
+    \SR{c}{11}{100}%
+    \SR{d}{2}{10}%
+    $x = \Rb$%
+}

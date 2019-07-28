@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{hmargin=1cm,vmargin=1cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fp}
+\usepackage{tikz}
+\usepackage{tabularx}
+
+\usepackage{array,multirow}
+
+\pagestyle{empty}
+
+\setlength\parindent{0pt}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\setlength\extrarowheight{2pt} % fix cell height
+
+
+\begin{document}
+
+%%%%%%%% DEFINITION DU NUMERO DE SUJET %%%%%%%%
+%                                             %
+                \def\Sujet{2}                 %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\FPeval\SujetPrec{trunc(\Sujet-1,0)}
+
+\newcommand\SetSeed[2]{%
+    \FPeval\Seed{trunc(#1*431*#2*79,0)}%
+    \FPseed=\Seed%
+}
+
+% \R{x}{y}{z} génère une variable entière aléatoire \Rx compris entre y et z
+\newcommand\R[3]{\expandafter\FPeval\csname R#1\endcsname{trunc(#2+random*(#3-#2),0)}}
+% \SR{x}{y}{z} génère une variable entière aléatoire \Rx compris entre y et z ou entre -z et -y
+\newcommand\SR[3]{\expandafter\FPeval\csname R#1\endcsname{trunc(trunc(round(random,0)*2-1,0)*trunc(#2+random*(#3-#2),0),0)}}
+% \S{x} affiche x précédé d'un + si positif
+\newcommand\Plus[1]{\FPifgt#1{0}+#1\else#1\fi}
+
+% \NE{x}{y} égal 1 si x = y et 0 sinon
+\newcommand\NE[2]{trunc(1-abs((#1)-(#2))/1000,0)}
+% \EZ{x}{y}{z} affiche y si x = 0 et et z sinon
+\newcommand\EZ[3]{\FPifeq#1{0}{#2}\else#3\fi}
+
+\input{exo} % Charge les modèles d'exos
+
+\input{\SujetPrec} % Charge la \Sol du sujet précédent
+\input{\Sujet} % Charge l'\Exo du sujet actuel (\Exo est redéfinie mais \Sol ne l'est pas)
+
+\foreach \n in{1,...,10}  {
+
+\begin{tabularx}{\linewidth}{lYr}
+Sujet \no\Sujet & \textbf{Entraînement au calcul} & Élève \no\n
+\end{tabularx}
+
+\medskip
+
+\SetSeed{\Sujet}{\n}
+
+\Sol
+
+\medskip
+
+\SetSeed{\Sujet}{\n}
+
+
+\Exo
+
+\ifodd\n\vfill\else\newpage\fi
+
+}
+
+
+\end{document}
