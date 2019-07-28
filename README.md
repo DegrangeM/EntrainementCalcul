@@ -23,7 +23,7 @@ Le fichier `exo.tex` contient la banque d'exercices disponibles
 
 Le fichier `1.tex` contient les exercices du sujet n°1 ainsi que leur correction.
 
-Même chose pour le fichier `2.tex`.
+Même chose pour le fichier `2.tex` qui contient également en commentaire une variante de présentation de la correction.
 
 Lorsque le numéro de sujet est fixé à 2 dans `main.tex`, le pdf compilé va afficher les exercices du sujet n°2 ainsi que la correction du sujet précédent à savoir le sujet n°1.
 
